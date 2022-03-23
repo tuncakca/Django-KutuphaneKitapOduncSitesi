@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<title>{% block title %} My Home Page {% endblock %}</title>
+<meta name="keywords" content="{% block keywords %} Kitap Odunc Sitesi {% endblock %}">
+<meta name="description" content="{% block description %} Kitap Odunc Sitesi  {% endblock %}">
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{% load static%}
+<link href=" {% static 'style.css'%}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{% static 'js/cufon-yui.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/arial.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/cuf_run.js'%}"></script>
+{% block head %} {% endblock %}
+</head>
+<body>
+<!-- START PAGE SOURCE -->
+
+<div class="main">
+{% include 'header.html' %}
+
+{% block sidebar %} {% endblock %}
+{% block slider %} {% endblock %}
+{% block content %} {% endblock %}
+{% block body %} {% endblock %}
+
+{% include 'footer.html' %}
+{% block footer %} {% endblock %}
+
+
+</div>
+<!-- END PAGE SOURCE -->
+</body>
+
+</html>

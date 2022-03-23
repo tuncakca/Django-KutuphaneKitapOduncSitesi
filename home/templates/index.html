@@ -1,6 +1,13 @@
-<h1>Ahmet Yesevi Üniversitesi</h1>
-<h3>Bilgisayar Mühendisliği</h3>
+{% extends 'homebase.html' %}
 
-<p>
-    {{text}}
-</p>
+{% block title %} index sayfasi {% endblock %}
+{% block keywords %} index sayfasi {% endblock %}
+{% block description %} index sayfasi {% endblock %}
+
+{% block content %}
+    {% include "content.html" %}
+{% endblock %}
+
+{% block body %}
+    {% include "fbg.html" %}
+{% endblock %}
