@@ -17,11 +17,16 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from home import views
 
 urlpatterns = [
     path('', include('home.urls')),
-    path('home/', include('home.urls')),
+    path('home', include('home.urls')),
+    path('hakkimizda', views.hakkimizda, name='hakkimizda'),
+    path('referanslarimiz', views.referenslarimiz, name='referanslarimiz'),
+    path('iletisim', views.iletisim, name='iletisim'),
     path('admin/', admin.site.urls),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 if settings.DEBUG:

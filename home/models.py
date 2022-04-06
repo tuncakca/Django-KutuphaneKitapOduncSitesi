@@ -1,5 +1,6 @@
 from telnetlib import STATUS
 from django.db import models
+from ckeditor_uploader.fields import RichTextUploadingField
 
 # Create your models here.
 
@@ -23,9 +24,9 @@ class Setting(models.Model):
     instagram = models.CharField(blank=True,max_length=150)
     twitter = models.CharField(blank=True,max_length=150)
     youtube = models.CharField(blank=True,max_length=150)
-    aboutUs = models.TextField(blank=True)
-    contact = models.TextField(blank=True)
-    references = models.TextField(blank=True)
+    aboutUs = RichTextUploadingField(blank=True)
+    contact = RichTextUploadingField(blank=True)
+    references = RichTextUploadingField(blank=True)
     status = models.CharField(blank=True,max_length=10, choices=STATUS)
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)

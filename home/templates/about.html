@@ -1,0 +1,39 @@
+{% extends 'homebase.html' %}
+
+{% block title %} {{ setting.company }} {% endblock %}
+{% block keywords %} index sayfasi {% endblock %}
+{% block description %} index sayfasi {% endblock %}
+
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="content">
+  <div class="content_resize">
+    <div class="content_resize2">
+      <div class="mainbar">
+        <div class="article">
+          <h2><span>Hakkımızda</span></h2>
+          <div class="clr"></div>
+          {{ setting.aboutUs|safe }}
+          <p</p>
+          
+        </div>
+        
+      </div>
+
+      <div class="clr"></div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+
+{% block body %}
+    {% include "fbg.html" %}
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'homebase.html' %}
+
+{% block title %} {{ setting.title }} {% endblock %}
+{% block keywords %} İletişim Sayfasi {% endblock %}
+{% block description %} İletişim sayfasi {% endblock %}
+
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="content">
+  <div class="content_resize">
+    <div class="content_resize2">
+      <div class="mainbar">
+        <div class="article">
+          <h2><span>İletişim Bilgileri</span></h2>
+          <div class="clr"></div>
+          {{ setting.contact|safe }}
+          <p</p>
+          
+        </div>
+        
+      </div>
+
+      <div class="clr"></div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+
+{% block body %}
+    {% include "fbg.html" %}
+{% endblock %}

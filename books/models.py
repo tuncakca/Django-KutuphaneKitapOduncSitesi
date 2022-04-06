@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.safestring import mark_safe
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 class Category(models.Model):
@@ -31,7 +32,7 @@ class Book(models.Model):
     keywords = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
     image = models.ImageField(blank=True, upload_to='images/')
-    detail = models.TextField()
+    detail = RichTextUploadingField()
     isbn = models.CharField(max_length=13, null=True)
     author = models.CharField(max_length=50, null=True)
     publisher = models.CharField(max_length=100, null=True)
