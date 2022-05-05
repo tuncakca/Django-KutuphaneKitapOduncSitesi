@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib import messages
+from books.models import Book, Category
 
 from home.models import ContactFormMessage, ContactFormu, Setting
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, request
@@ -8,8 +9,11 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, reques
 
 def index(request):
     setting = Setting.objects.get(pk=1)
+    sliderdata = Book.objects.all()[:4]
+    category = Category.objects.all()
+
     text = "Merhaba Django"
-    context = {'setting': setting, 'page': 'Home'}
+    context = {'setting': setting, 'page': 'Home', 'sliderdata': sliderdata, 'category': category }
     return render(request, 'index.html', context)
 
 def hakkimizda(request):

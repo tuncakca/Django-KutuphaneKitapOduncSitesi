@@ -3,6 +3,9 @@
       <div class="content_resize2">
         <div class="mainbar">
           <div class="article">
+            {% include 'slider.html' %}
+          </div>
+          <div class="article">
             <h2><span>Template</span> License</h2>
             <div class="clr"></div>
             <p><span class="date">Date: <a href="#">16.03.2018</a></span> &nbsp;|&nbsp; Posted by <a href="#">Owner</a> &nbsp;|&nbsp; Filed under <a href="#">templates</a>, <a href="#">internet</a></p>
@@ -22,8 +25,35 @@
         </div>
         <div class="sidebar">
           <div class="gadget">
-            <h2 class="star"><span>Sidebar</span> Menu</h2>
+            <h2 class="star"><span>Kitap</span> Kategorileri</h2>
             <div class="clr"></div>
+            {% load mptt_tags %}
+            
+            <ul id="root">
+              {% recursetree category %}
+                    <li><span class="caret">
+                      
+                      <a href="/category/{{ node.slug }}">{{ node.title }}</a></span>
+                        {% if not node.is_leaf_node %}
+                            <ul>
+                            <a href="">--->{{ children }}</a>
+                            </ul>
+                        {% endif %}
+                      </li>
+                {% endrecursetree %}
+            </ul>
+            <ul class="root">
+              {% recursetree category %}
+                  <li>
+                  {{ node.title }}
+                      {% if not node.is_leaf_node %}
+                          <ul class="children">
+                              {{ children }}
+                          </ul>
+                      {% endif %}
+                  </li>
+              {% endrecursetree %}
+          </ul>
             <ul class="sb_menu">
               <li><a href="#">Home</a></li>
               <li><a href="#">TemplateInfo</a></li>
@@ -31,6 +61,7 @@
               <li><a href="#">Blog</a></li>
               <li><a href="#">Archives</a></li>
             </ul>
+
           </div>
           <div class="gadget">
             <h2 class="star"><span>Sponsors</span></h2>
