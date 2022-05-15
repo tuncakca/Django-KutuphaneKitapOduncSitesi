@@ -11,9 +11,16 @@ def index(request):
     setting = Setting.objects.get(pk=1)
     sliderdata = Book.objects.all()[:4]
     category = Category.objects.all()
+    daybooks = Book.objects.all()[:4]
+    lastbooks = Book.objects.all().order_by('-id')[:4]
+    randombooks = Book.objects.all().order_by('?')[:4]
 
     text = "Merhaba Django"
-    context = {'setting': setting, 'page': 'Home', 'sliderdata': sliderdata, 'category': category }
+    context = {'setting': setting, 'page': 'Home', 'sliderdata': sliderdata, 'category': category,
+    'daybooks': daybooks,
+    'lastbooks': lastbooks,
+    'randombooks': randombooks,
+     }
     return render(request, 'index.html', context)
 
 def hakkimizda(request):
