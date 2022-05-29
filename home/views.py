@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib import messages
-from books.models import Book, Category
+from books.models import Book, Category, Images
 
 from home.models import ContactFormMessage, ContactFormu, Setting
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, request
@@ -54,3 +54,19 @@ def iletisim(request):
     form = ContactFormu()
     context = {'setting': setting, 'form': form, 'page': 'iletisim'}
     return render(request, 'contact.html', context)
+
+def category_books(request,id, slug):
+    category = Category.objects.all()
+    categorydata = Category.object.get(pk=id)
+    books = Book.objects.filter(category_id=id)
+    context = {'books' : books, 'category': category, 'categorydata': categorydata}
+    return render(request,'book_detail.html', context)
+
+def book_detail(request, id, slug):
+    category = Category.objects.all()
+    book = Book.objects.get(pk=id)
+    images = Images.objects.filter(book_id=id)
+    context = {'book' : book, 'category': category, 'images': images,}
+
+    
+    return render(request,'book_detail.html', context)

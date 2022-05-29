@@ -39,6 +39,7 @@ class Book(models.Model):
     title = models.CharField(max_length=100)
     keywords = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
+    slug = models.SlugField(null=True)
     image = models.ImageField(blank=True, upload_to='images/')
     detail = RichTextUploadingField()
     isbn = models.CharField(max_length=13, null=True)

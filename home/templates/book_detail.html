@@ -1,0 +1,41 @@
+{% extends 'homebase.html' %}
+
+{% block title %} {{ setting.company }} {% endblock %}
+{% block keywords %} index sayfasi {% endblock %}
+{% block description %} index sayfasi {% endblock %}
+
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="content">
+  <div class="content_resize">
+    <div class="content_resize2">
+      <div class="mainbar">
+        <div class="article">
+          <h2><span>Kitap Detay</span></h2>
+          <div class="clr"></div>
+          <img src="{{ book.image.url }}" width="500" height="500" >
+          <h2>{{ book.detail }}</h2>
+          {% for rs in images %}
+          <img src="{{ rs.image.url }}" alt="">
+          {% endfor %}
+        </div>
+        
+      </div>
+
+      <div class="clr"></div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+
+{% block body %}
+    {% include "fbg.html" %}
+{% endblock %}
