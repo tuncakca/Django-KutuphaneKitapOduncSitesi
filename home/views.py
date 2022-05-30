@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib import messages
-from books.models import Book, Category, Images
+from books.models import Book, Category, Comment, Images
 
 from home.models import ContactFormMessage, ContactFormu, Setting
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, request
@@ -66,7 +66,8 @@ def book_detail(request, id, slug):
     category = Category.objects.all()
     book = Book.objects.get(pk=id)
     images = Images.objects.filter(book_id=id)
-    context = {'book' : book, 'category': category, 'images': images,}
+    comments = Comment.objects.filter(book_id=id, status='True')
+    context = {'book' : book, 'category': category, 'images': images, 'comments': comments,}
 
     
     return render(request,'book_detail.html', context)

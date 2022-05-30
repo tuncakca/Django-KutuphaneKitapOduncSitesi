@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from books.models import Book, Category, Images
+from books.models import Book, Category, Comment, Images
 from mptt.admin import MPTTModelAdmin, DraggableMPTTAdmin
 
 # Register your models here.
@@ -58,8 +58,13 @@ class CategoryAdmin2(DraggableMPTTAdmin):
         return instance.products_cumulative_count
     related_products_cumulative_count.short_description = 'Related products (in tree)'
 
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['subject', 'comment', 'book', 'user', 'status']
+    list_filter = ['status']
+
 
 admin.site.register(Category, CategoryAdmin2)
 admin.site.register(Book, BookAdmin)
 admin.site.register(Images, ImagesAdmin)
+admin.site.register(Comment, CommentAdmin)
 

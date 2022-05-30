@@ -29,6 +29,42 @@
       </div>
 
       <div class="clr"></div>
+
+      <h2>Yorumlar1</h2>
+
+      {% for rs in comments %}
+        <h4>{{rs.subject}}</h4>
+        <p>{{rs.comment}}</p>
+      {% endfor %}
+
+      <form class="review-form" action="/book/addcomment/{{ book.id }}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <input name="subject" class="input" type="text" placeholder="Your subject" />
+        </div>
+        <div class="form-group">
+            <textarea name="comment" class="input" placeholder="Your review"></textarea>
+        </div>
+        <div class="form-group">
+            <div class="input-rating">
+                <strong class="text-uppercase">Your Rating: </strong>
+                <div class="stars">
+                    <input type="radio" id="star5" name="rate" value="5" /><label for="star5"></label>
+                    <input type="radio" id="star4" name="rate" value="4" /><label for="star4"></label>
+                    <input type="radio" id="star3" name="rate" value="3" /><label for="star3"></label>
+                    <input type="radio" id="star2" name="rate" value="2" /><label for="star2"></label>
+                    <input type="radio" id="star1" name="rate" value="1" /><label for="star1"></label>
+                </div>
+            </div>
+        </div>
+        {% if user.id is not None %}
+            <button class="primary-btn">Submit</button>
+        {% else %}
+            You must be logged in to post a review
+        {% endif %}
+    </form>
+
+
     </div>
   </div>
 </div>
