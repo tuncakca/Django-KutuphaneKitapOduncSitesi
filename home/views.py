@@ -5,6 +5,7 @@ from books.models import Book, Category, Comment, Images
 
 from home.models import ContactFormMessage, ContactFormu, Setting
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, request
+from home.forms import SearchForm
 # Create your views here.
 
 def index(request):
@@ -71,3 +72,19 @@ def book_detail(request, id, slug):
 
     
     return render(request,'book_detail.html', context)
+
+def book_search(request):
+   if request.method == 'POST':
+      form = SearchForm(request.POST)
+      if True: #if form.is_vaild():
+            category = Category.objects.all()
+            query = form.cleaned_data['query']
+            books = Book.objects.filter(title_icontains=query)
+            context = {
+               'books': books,
+                'category': category,
+            }
+            return render(request, 'books_search.html', context)
+
+         
+   return HttpResponseRedirect('/')

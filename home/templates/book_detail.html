@@ -20,7 +20,7 @@
           <h2><span>Kitap Detay</span></h2>
           <div class="clr"></div>
           <img src="{{ book.image.url }}" width="500" height="500" >
-          <h2>{{ book.detail }}</h2>
+          <h2>{{ book.detail | safe }}</h2>
           {% for rs in images %}
           <img src="{{ rs.image.url }}" alt="">
           {% endfor %}
@@ -30,7 +30,7 @@
 
       <div class="clr"></div>
 
-      <h2>Yorumlar1</h2>
+      <h2>Yorumlar</h2>
 
       {% for rs in comments %}
         <h4>{{rs.subject}}</h4>

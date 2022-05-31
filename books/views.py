@@ -3,9 +3,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
-from books.models import CommentForm, Comment
+from books.models import Category, CommentForm, Comment, Book
 from django.contrib.auth.decorators import login_required
-
+from home.forms import SearchForm
 
 def index(request):
    return  HttpResponse("My Book Page")
@@ -32,3 +32,7 @@ def addcomment(request,id):
          return HttpResponseRedirect(url)
 
    return HttpResponseRedirect(url)
+
+
+
+
