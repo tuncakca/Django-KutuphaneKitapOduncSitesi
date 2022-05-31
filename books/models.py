@@ -1,9 +1,11 @@
+import uuid
 from django.db import models
 from django.utils.safestring import mark_safe
 from ckeditor_uploader.fields import RichTextUploadingField
 from mptt.models import MPTTModel, TreeForeignKey
 from django.forms import ModelForm
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 class Category(MPTTModel):
     STATUS = (
@@ -15,7 +17,7 @@ class Category(MPTTModel):
     description = models.CharField(max_length=255)
     image = models.ImageField(blank=True, upload_to='images/')
     status = models.CharField(max_length=10, choices=STATUS)
-    slug = models.SlugField()
+    slug = models.SlugField(null=False, unique=True)
     parent = TreeForeignKey('self',blank=True, null=True, related_name='children', on_delete=models.CASCADE)
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
@@ -31,6 +33,11 @@ class Category(MPTTModel):
             k = k.parent
         return ' -> '.join(full_path[::-1])
 
+    
+
+    def get_absolute_url(self):
+        return reverse('category_detail', kwargs={'slug': self.slug})
+
 # Create your models here.
 class Book(models.Model):
     STATUS = (
@@ -41,7 +48,7 @@ class Book(models.Model):
     title = models.CharField(max_length=100)
     keywords = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
-    slug = models.SlugField(null=True)
+    slug = models.SlugField(null=True, unique=True )
     image = models.ImageField(blank=True, upload_to='images/')
     detail = RichTextUploadingField()
     isbn = models.CharField(max_length=13, null=True)
@@ -58,6 +65,10 @@ class Book(models.Model):
     def image_tag(self):
         return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
     image_tag.short_description = 'Image'
+
+    def get_absolute_url(self):
+        return reverse('book_detail', kwargs={'slug': self.slug})
+
 
 
 class Images(models.Model):
