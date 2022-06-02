@@ -1,3 +1,41 @@
+<style>
+  .dropbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  .dropdown:hover .dropbtn {background-color: #3e8e41;}
+  </style>
+
+
 <div class="header">
     <div class="header_resize">
       <div class="logo">
@@ -13,6 +51,20 @@
         </ul>
       </div>
       <div class="searchform">
+        {% if user.id is not None %}
+        <div class="dropdown">
+          <button class="dropbtn">{{ user.first_name }}</button>
+          <div class="dropdown-content">
+            <a href="#">Dashboard</a>
+            <a href="#">My Comments</a>
+            <a href="logout/">Logout</a>
+          </div>
+        </div> 
+        {% else %}
+        <a href="/login/">Log in</a>
+        {% endif %}
+        </div>
+      <div class="searchform">
         <form id="formsearch" name="formsearch" method="post" action="/search/">
           {% csrf_token %}
           <span>
@@ -21,6 +73,11 @@
           <input name="button_search" src="images/search_btn.gif" class="button_search" type="image" />
         </form>
       </div>
+      
       <div class="clr"></div>
+
+        
+
+
     </div>
   </div>
