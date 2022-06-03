@@ -25,7 +25,18 @@
           <img src="{{ rs.image.url }}" alt="">
           {% endfor %}
         </div>
-        
+        <h2>Ödünç Al</h2>
+        <div class="borrow-btn">
+          <form action="/borrow/addtocart/{{ book.id }}" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <span class="text-uppercase">Alış tarihi: </span>
+            <input name="bookdate" type="date">
+            <span class="text-uppercase">Geri veriş tarihi: </span>
+            <input name="returndate" type="date">
+            <button type="submit">Listeye Ekle</button>
+          </form>
+        </div>
       </div>
 
       <div class="clr"></div>

@@ -19,11 +19,13 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from home import views
+from borrows import views as borrowviews
 
 urlpatterns = [
     path('', include('home.urls')),
     path('home', include('home.urls')),
     path('book/', include('books.urls')),
+    path('borrow/', include('borrows.urls')),
     path('hakkimizda', views.hakkimizda, name='hakkimizda'),
     path('referanslarimiz', views.referenslarimiz, name='referanslarimiz'),
     path('iletisim', views.iletisim, name='iletisim'),
@@ -34,6 +36,7 @@ urlpatterns = [
     path('search/', views.book_search, name='book_search'),
     path('logout/', views.logout_view, name='logout_view'),
     path('login/', views.login_view, name='login_view'),
+    path('borrowcart/', borrowviews.borrowcart, name='borrowcart'),
     
 ]
 
